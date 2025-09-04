@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritika Srivastava Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light background */
+            color: #1e293b; /* Dark text */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .dark body {
+            background-color: #0f172a; /* Dark background */
+            color: #cbd5e1; /* Light text */
+        }
+        .section-padding {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+        }
+        /* Custom animation for hero text */
+        .typing-effect {
+            display: inline-block;
+            overflow: hidden; /* Ensures the cursor is visible */
+            white-space: nowrap; /* Prevents text from wrapping */
+            border-right: .15em solid #8b5cf6; /* The typing cursor */
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #8b5cf6; }
+        }
+
+        /* Scroll reveal animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Subtle glow on hover for cards/buttons */
+        .glow-hover:hover {
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4); /* Purple glow */
+            transform: translateY(-2px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Custom scrollbar for a premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a78bfa;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-slate-900 dark:text-slate-200">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-slate-800 shadow-lg dark:shadow-xl transition-colors duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 rounded-lg p-2 hover:bg-indigo-50 dark:hover:bg-slate-700 transition-all duration-300">
+                Ritika<span class="text-slate-800 dark:text-slate-300"></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="nav-link text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">About</a>
+                <a href="#skills" class="nav-link text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">Skills</a>
+                <a href="#projects" class="nav-link text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">Projects</a>
+                <a href="#contact" class="nav-link text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">Contact</a>
+                <button id="theme-toggle" class="p-2 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-yellow-400 hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-moon text-xl dark:hidden"></i>
+                    <i class="fas fa-sun text-xl hidden dark:inline-block"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center space-x-4">
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-yellow-400 hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-moon text-xl dark:hidden"></i>
+                    <i class="fas fa-sun text-xl hidden dark:inline-block"></i>
+                </button>
+                <button id="mobile-menu-button" class="text-slate-700 dark:text-slate-300 text-2xl p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-300">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-800 py-4 shadow-inner">
+            <nav class="flex flex-col items-center space-y-4">
+                <a href="#about" class="nav-link text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 w-full text-center py-2">About</a>
+                <a href="#skills" class="nav-link text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 w-full text-center py-2">Skills</a>
+                <a href="#projects" class="nav-link text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 w-full text-center py-2">Projects</a>
+                <a href="#contact" class="nav-link text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 w-full text-center py-2">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+       <section id="hero" class="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-slate-800 dark:to-slate-900 text-white overflow-hidden pt-24 md:pt-0">
+    <!-- Subtle background elements for premium feel -->
+    <div class="absolute inset-0 z-0 opacity-10">
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1920 1080">
+            <defs>
+                <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <path d="M80 0L0 0 0 80" fill="none" stroke="currentColor" stroke-width="1" opacity="0.1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+    </div>
+    <div class="relative z-10 p-8 max-w-4xl mx-auto space-y-6 scroll-reveal">
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
+            Hi, I'm <span class="text-yellow-300 dark:text-pink-300">Ritika Srivastava</span>
+        </h1>
+        <p class="text-2xl md:text-4xl font-light text-white typing-effect" data-text="A Passionate Web Developer.">
+            A Passionate Full Stack Developer.
+        </p>
+        <p class="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
+            Crafting elegant and efficient digital experiences with a focus on clean code and user-centric design.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+            <a href="#projects" class="glow-hover px-8 py-3 bg-white text-indigo-700 font-bold text-lg rounded-full shadow-lg hover:bg-gray-100 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600 transition-all duration-300 flex items-center space-x-2">
+                <i class="fas fa-laptop-code"></i> <span>View My Work</span>
+            </a>
+            <a href="#contact" class="glow-hover px-8 py-3 border-2 border-white text-white font-bold text-lg rounded-full hover:bg-white hover:text-indigo-700 dark:border-indigo-400 dark:hover:bg-indigo-400 dark:hover:text-slate-900 transition-all duration-300 flex items-center space-x-2">
+                <i class="fas fa-envelope"></i> <span>Get In Touch</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+        
+        <!-- About Section -->
+<section id="about" class="section-padding bg-white dark:bg-slate-800 transition-colors duration-300 scroll-reveal">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <h2 class="text-4xl font-extrabold text-center text-slate-800 dark:text-indigo-400 mb-12 relative">
+            About Me
+            <span class="absolute left-1/2 -bottom-3 transform -translate-x-1/2 w-24 h-1 bg-indigo-500 rounded-full"></span>
+        </h2>
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/3 flex justify-center scroll-reveal">
+                <img src="me 1.jpg" alt="me1" class="rounded-full shadow-2xl border-4 border-indigo-500 w-64 h-64 object-cover glow-hover">
+            </div>
+            <div class="md:w-2/3 space-y-6 text-lg text-slate-700 dark:text-slate-300 scroll-reveal">
+                <p>
+                    Hello! I'm <strong>Ritika Srivastava</strong>, a passionate <strong>Frontend Developer</strong> currently pursuing B.Tech in Computer Science and Engineering. I love building modern, responsive, and user-friendly websites that bring ideas to life.
+                </p>
+                <p>
+                    I specialize in crafting intuitive interfaces using <strong>HTML, CSS, JavaScript, and React.js</strong>, along with styling frameworks like <strong>Tailwind CSS</strong>. I also have hands-on experience with backend basics using <strong>Node.js and MongoDB</strong>.
+                </p>
+                <p>
+                    My journey in tech has been fueled by curiosity and creativity, from developing academic projects like a <strong>Blood Donation Tracker</strong>, to working on hackathon projects such as <strong>Blogi</strong>. I’m constantly learning and improving to deliver innovative solutions. Let’s create something amazing together!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+       <!-- Skills Section -->
+<section id="skills" class="section-padding bg-gray-50 dark:bg-slate-900 transition-colors duration-300 scroll-reveal">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <h2 class="text-4xl font-extrabold text-center text-slate-800 dark:text-indigo-400 mb-12 relative">
+            My Skills
+            <span class="absolute left-1/2 -bottom-3 transform -translate-x-1/2 w-24 h-1 bg-indigo-500 rounded-full"></span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Skill Card 1: Frontend -->
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl hover:shadow-2xl glow-hover transition-all duration-300 space-y-4 scroll-reveal">
+                <div class="flex items-center space-x-4 mb-4">
+                    <i class="fas fa-brush text-4xl text-indigo-500"></i>
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200">Frontend Development</h3>
+                </div>
+                <ul class="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-2">
+                    <li><i class="fab fa-html5 mr-2 text-orange-500"></i> HTML5, CSS3</li>
+                    <li><i class="fab fa-js-square mr-2 text-yellow-500"></i> JavaScript (ES6+)</li>
+                    <li><i class="fab fa-react mr-2 text-blue-400"></i> React.js</li>
+                    <li><i class="fas fa-paint-brush mr-2 text-teal-500"></i> Tailwind CSS, Responsive Design</li>
+                </ul>
+            </div>
+            <!-- Skill Card 2: Backend -->
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl hover:shadow-2xl glow-hover transition-all duration-300 space-y-4 scroll-reveal">
+                <div class="flex items-center space-x-4 mb-4">
+                    <i class="fas fa-server text-4xl text-purple-500"></i>
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200">Backend Development</h3>
+                </div>
+                <ul class="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-2">
+                    <li><i class="fab fa-node-js mr-2 text-green-500"></i> Node.js, Express.js</li>
+                    <li><i class="fas fa-database mr-2 text-gray-500"></i> MongoDB (Basics)</li>
+                    <li><i class="fas fa-cloud mr-2 text-orange-400"></i> RESTful APIs</li>
+                </ul>
+            </div>
+            <!-- Skill Card 3: Tools & Others -->
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl hover:shadow-2xl glow-hover transition-all duration-300 space-y-4 scroll-reveal">
+                <div class="flex items-center space-x-4 mb-4">
+                    <i class="fas fa-tools text-4xl text-emerald-500"></i>
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200">Tools & Others</h3>
+                </div>
+                <ul class="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-2">
+                    <li><i class="fab fa-git mr-2 text-orange-600"></i> Git, GitHub</li>
+                    <li><i class="fas fa-code mr-2 text-indigo-500"></i> VS Code</li>
+                    <li><i class="fas fa-pencil-ruler mr-2 text-pink-500"></i> Graphic Design (Canva, Figma Basics)</li>
+                    <li><i class="fas fa-mobile-alt mr-2 text-blue-600"></i> Responsive & User-Centered Design</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Projects Section -->
+<section id="projects" class="section-padding bg-white dark:bg-slate-800 transition-colors duration-300 scroll-reveal">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <h2 class="text-4xl font-extrabold text-center text-slate-800 dark:text-indigo-400 mb-12 relative">
+      My Recent Work
+      <span class="absolute left-1/2 -bottom-3 transform -translate-x-1/2 w-24 h-1 bg-indigo-500 rounded-full"></span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <!-- Project Card 1 -->
+      <div class="bg-gray-50 dark:bg-slate-900 rounded-xl shadow-xl hover:shadow-2xl overflow-hidden glow-hover transition-all duration-300 scroll-reveal">
+        <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Tic+Tac+Toe" alt="Tic Tac Toe Game" class="w-full h-48 object-cover">
+        <div class="p-6 space-y-4">
+          <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200">Tic Tac Toe Game</h3>
+          <p class="text-slate-700 dark:text-slate-300 text-base">
+            A fun and interactive Tic Tac Toe game built with HTML, CSS, and JavaScript featuring simple UI and win detection logic.
+          </p>
+          <div class="flex flex-wrap gap-2 text-sm">
+            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full dark:bg-indigo-800 dark:text-indigo-200">HTML</span>
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full dark:bg-green-800 dark:text-green-200">CSS</span>
+            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full dark:bg-yellow-800 dark:text-yellow-200">JavaScript</span>
+          </div>
+          <div class="flex justify-start space-x-4 mt-4">
+            <a href="#" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-lg flex items-center space-x-1">
+              <i class="fas fa-link"></i> <span>Live Demo</span>
+            </a>
+            <a href="#" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-300 text-lg flex items-center space-x-1">
+              <i class="fab fa-github"></i> <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 2 -->
+      <div class="bg-gray-50 dark:bg-slate-900 rounded-xl shadow-xl hover:shadow-2xl overflow-hidden glow-hover transition-all duration-300 scroll-reveal">
+        <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Stopwatch" alt="Stopwatch Project" class="w-full h-48 object-cover">
+        <div class="p-6 space-y-4">
+          <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200">Stopwatch</h3>
+          <p class="text-slate-700 dark:text-slate-300 text-base">
+            A simple stopwatch application with start, stop, reset, and lap functionality built using JavaScript.
+          </p>
+          <div class="flex flex-wrap gap-2 text-sm">
+            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full dark:bg-indigo-800 dark:text-indigo-200">HTML</span>
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full dark:bg-green-800 dark:text-green-200">CSS</span>
+            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full dark:bg-yellow-800 dark:text-yellow-200">JavaScript</span>
+          </div>
+          <div class="flex justify-start space-x-4 mt-4">
+            <a href="#" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-lg flex items-center space-x-1">
+              <i class="fas fa-link"></i> <span>Live Demo</span>
+            </a>
+            <a href="#" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-300 text-lg flex items-center space-x-1">
+              <i class="fab fa-github"></i> <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 3 -->
+      <div class="bg-gray-50 dark:bg-slate-900 rounded-xl shadow-xl hover:shadow-2xl overflow-hidden glow-hover transition-all duration-300 scroll-reveal">
+        <img src="https://placehold.co/600x400/c084fc/ffffff?text=Portfolio" alt="Portfolio Website" class="w-full h-48 object-cover">
+        <div class="p-6 space-y-4">
+          <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200">Portfolio Website</h3>
+          <p class="text-slate-700 dark:text-slate-300 text-base">
+            A personal portfolio website showcasing my skills, projects, and experience. Built with HTML, CSS, JavaScript, and Tailwind CSS.
+          </p>
+          <div class="flex flex-wrap gap-2 text-sm">
+            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full dark:bg-indigo-800 dark:text-indigo-200">HTML</span>
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full dark:bg-green-800 dark:text-green-200">CSS</span>
+            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full dark:bg-yellow-800 dark:text-yellow-200">JavaScript</span>
+            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full dark:bg-purple-800 dark:text-purple-200">Tailwind CSS</span>
+          </div>
+          <div class="flex justify-start space-x-4 mt-4">
+            <a href="#" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-lg flex items-center space-x-1">
+              <i class="fas fa-link"></i> <span>Live Demo</span>
+            </a>
+            <a href="#" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-300 text-lg flex items-center space-x-1">
+              <i class="fab fa-github"></i> <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+        <!-- Contact Section -->
+<section id="contact" class="section-padding bg-gray-50 dark:bg-slate-900 transition-colors duration-300 scroll-reveal">
+    <div class="container mx-auto px-6 max-w-4xl">
+        <h2 class="text-4xl font-extrabold text-center text-slate-800 dark:text-indigo-400 mb-12 relative">
+            Get In Touch
+            <span class="absolute left-1/2 -bottom-3 transform -translate-x-1/2 w-24 h-1 bg-indigo-500 rounded-full"></span>
+        </h2>
+        <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl hover:shadow-2xl glow-hover transition-all duration-300 scroll-reveal">
+            <p class="text-lg text-center mb-8 text-slate-700 dark:text-slate-300">
+                Have a project in mind or just want to say hello? Fill out the form below or connect with me on social media.
+            </p>
+            <form id="contact-form" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Name</label>
+                    <input type="text" id="name" name="name" required
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email</label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200">
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                    <textarea id="message" name="message" rows="6" required
+                              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200"></textarea>
+                </div>
+                <button type="submit"
+                        class="w-full px-6 py-3 bg-indigo-600 text-white font-bold text-lg rounded-full shadow-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-all duration-300 glow-hover flex items-center justify-center space-x-2">
+                    <i class="fas fa-paper-plane"></i> <span>Send Message</span>
+                </button>
+                <div id="form-message" class="mt-4 text-center text-lg hidden"></div>
+            </form>
+
+            <div class="mt-10 text-center">
+                <p class="text-xl font-semibold text-slate-800 dark:text-slate-200 mb-4">Connect with me:</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/in/ritika-srivastava-461b6b2a2/" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-4xl hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/ritika1711" target="_blank" class="text-slate-800 dark:text-slate-300 hover:text-indigo-800 dark:hover:text-indigo-300 text-4xl hover:scale-110 transition-transform duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 dark:bg-slate-900 text-white py-8 text-center transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            <p class="text-lg">&copy; <span id="current-year"></span> Ritika Srivastava. All rights reserved.</p>
+            <p class="text-sm mt-2 opacity-80">Designed & Developed with ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Current Year for Footer ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- Dark Mode Toggle ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            const htmlElement = document.documentElement;
+
+            // Check for saved theme preference or system preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+            }
+
+            function toggleTheme() {
+                htmlElement.classList.toggle('dark');
+                if (htmlElement.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggleMobile.addEventListener('click', toggleTheme);
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('#mobile-menu .nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- Smooth Scrolling for Navigation Links ---
+            document.querySelectorAll('a.nav-link[href^="#"], a[href^="#hero"], a[href^="#projects"], a[href^="#contact"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // --- Hero Section Typing Effect ---
+            const typingElement = document.querySelector('.typing-effect');
+            const originalText = typingElement.getAttribute('data-text');
+
+            // Reset animation by cloning and replacing the element
+            function restartTypingAnimation() {
+                const newTypingElement = typingElement.cloneNode(true);
+                typingElement.parentNode.replaceChild(newTypingElement, typingElement);
+                // The animation will restart automatically due to the new element being added to DOM
+            }
+            // Trigger restart after a delay if needed, or simply on load as CSS handles it
+            // For continuous animation or if you want to change text:
+            // setInterval(restartTypingAnimation, 5000); // Restart every 5 seconds for demo
+
+            // --- Scroll Reveal Animations (Intersection Observer) ---
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                root: null, // viewport
+                threshold: 0.1, // percentage of target visible to trigger callback
+                rootMargin: '0px 0px -50px 0px' // offset from the viewport
+            });
+
+            scrollRevealElements.forEach(el => observer.observe(el));
+
+            // --- Contact Form Submission (Mock) ---
+            const contactForm = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent actual form submission
+
+                const formData = new FormData(this);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const message = formData.get('message');
+
+                console.log('Form Submitted!', { name, email, message });
+
+                // Simulate API call
+                setTimeout(() => {
+                    formMessage.classList.remove('hidden');
+                    formMessage.classList.remove('text-red-500');
+                    formMessage.classList.add('text-green-500');
+                    formMessage.innerHTML = `<i class="fas fa-check-circle mr-2"></i> Thank you, ${name}! Your message has been sent.`;
+                    contactForm.reset(); // Clear form fields
+                }, 1000); // Simulate network delay
+
+                // You would typically send this data to a backend server here
+                // fetch('/api/contact', {
+                //     method: 'POST',
+                //     body: JSON.stringify({ name, email, message }),
+                //     headers: { 'Content-Type': 'application/json' }
+                // })
+                // .then(response => response.json())
+                // .then(data => {
+                //     formMessage.classList.remove('hidden');
+                //     formMessage.classList.remove('text-red-500');
+                //     formMessage.classList.add('text-green-500');
+                //     formMessage.innerHTML = `<i class="fas fa-check-circle mr-2"></i> Thank you, ${name}! Your message has been sent.`;
+                //     contactForm.reset();
+                // })
+                // .catch(error => {
+                //     console.error('Error sending message:', error);
+                //     formMessage.classList.remove('hidden');
+                //     formMessage.classList.remove('text-green-500');
+                //     formMessage.classList.add('text-red-500');
+                //     formMessage.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i> There was an error sending your message. Please try again.`;
+                // });
+            });
+        });
+    </script>
+</body>
+</html>
